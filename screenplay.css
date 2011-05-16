@@ -1,0 +1,174 @@
+/*
+
+How to format a screenplay
+
+Page Metrics
+	size: letter-sized (8.5 x 11 inches)
+	margin: 1 x 1 x 1 x 1.5 inches (top, right, bottom, left - from edge of document)
+
+Element Metrics
+	slugline: 1.5 inches (left from edge of document)
+	action: 1.5 inches (left from edge of document)
+	character: 3.7 inches (left from edge of document)
+	dialog: 2.5 x 2.5 inches (right, left - from edge of document)
+	parenthetical: 2.9 x 3.1 inches (right, left - from edge of document)
+
+Page Typeface
+	typeface: Courier, 12 points, 10 pitch, no leading, no bold, no italics
+
+Element Typeface
+	slugline: uppercase
+	character: uppercase
+
+All elements, vertical spacing
+	1 em except between a single character's speech (character, parenthetical, dialog)
+
+*/
+
+/* Global Reset */
+
+* {
+	font: 16px/1 'Courier New', Courier, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* Global Reset, IE9's letter spacing adjustment for Courier New */
+
+html {
+	cursor: default;
+}
+
+:root html {
+	letter-spacing: 0.4px;
+}
+
+body {
+	background: #EEE;
+}
+
+/* Elements */
+
+.page,
+.page-content {
+	overflow: hidden;
+	position: relative;
+}
+
+.page {
+	background: #FFF;
+	color: #000;
+	word-wrap: break-word;
+}
+
+.page-number {
+	position: absolute;
+}
+
+.page {
+	height: 11in;
+	width: 8.5in;
+}
+
+.page-content {
+	height: 9in;
+	width: 6in;
+}
+
+.page-number {
+	top: 0.75in;
+	right: 1in;
+}
+
+.page-content {
+	margin: 1in 1in 1in 1.5in;
+}
+
+.print-controls {
+	margin: 1em 0;
+}
+
+@media print {
+	.print-controls {
+		display: none;
+	}
+
+	/* IE default print margins - 0.75 */
+
+	.print-offset-ie .page {
+		height: 9.5in; /* 11in */
+		width: 7in; /* 8.5in */
+	}
+
+	.print-offset-ie .page-content {
+		margin: 0.25in 0.25in 0.25in 0.75in; /* 1in 1in 1in 1.5in */
+	}
+
+	.print-offset-ie .page-number {
+		top: 0in; /* 0.75in */
+		right: 0.25in; /* 1in */
+	}
+
+	/* Firefox default print margins - 0.5 */
+
+	.print-offset-ff .page {
+		height: 10in; /* 11in */
+		width: 7.5in; /* 8.5in */
+	}
+
+	.print-offset-ff .page-content {
+		margin: 0.5in 0.5in 0.5in 1in; /* 1in 1in 1in 1.5in */
+	}
+
+	.print-offset-ff .page-number {
+		top: 0.25in; /* 0.75in */
+		right: 0.5in; /* 1in */
+	}
+
+	/* Do not print from Chrome 11 or Safari 5, bad mojo */
+
+	/* Print page-breaks */
+
+	.character + .parenthetical,
+	.character + .dialog,
+	.parenthetical + .dialog {
+		page-break-before: avoid;
+	}
+}
+
+.slugline,
+.action,
+.character,
+.dialog,
+.parenthetical {
+	margin-bottom: 1em;
+}
+
+.character + .parenthetical,
+.character + .dialog,
+.parenthetical + .dialog {
+	margin-top: -1em;
+}
+
+.character {
+	margin-right: 1in;
+	margin-left: 2.2in;
+}
+
+.dialog {
+	margin-right: 1.5in;
+	margin-left: 1in;
+}
+
+.parenthetical {
+	margin-right: 1.9in;
+	margin-left: 1.6in;
+}
+
+.slugline,
+.character,
+.action .character-name,
+.action .sound-fx,
+.action .important-prop {
+	text-transform: uppercase;
+}
